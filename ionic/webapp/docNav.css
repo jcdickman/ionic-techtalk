@@ -1,0 +1,4 @@
+.nav-header.module > .code {
+    overflow: visible;
+    text-overflow: inherit;
+}
