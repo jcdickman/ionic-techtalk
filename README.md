@@ -36,6 +36,42 @@ $ npm start
 
 The local node services should now be running at localhost:3000
 
+The API uses Sequelize ORM, which expects to have a mysql database running on localhost.
+
+The default credentials are as follows.
+You can of course modify them to match your specific mysql setup, within config/config.json.
+
+```sh
+{
+  "development": {
+    "username": "ionic",
+    "password": "ionic",
+    "database": "ionic",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "define": {
+      "timestamps": false
+    }
+  },
+  "production": {
+    "username": "ionic",
+    "password": "ionic",
+    "database": "ionic",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "define": {
+      "timestamps": false
+    }
+  }
+}
+```
+
+To seed the database with data, or to update the schema and reseed when your model changes, with the API running navigate to the dbSeed route:
+
+```sh
+http://localhost:3000/dbSeed
+```
+
 If you grunt built the documentation:
 
 The node consumer API docs should now be accessible via {path to project root}/apidocs/index.html
