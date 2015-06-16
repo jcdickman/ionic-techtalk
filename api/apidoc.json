@@ -1,0 +1,11 @@
+{
+  "name": "node seed",
+  "version": "0.0.1",
+  "description": "nodeSeed apiDoc example",
+  "title": "Custom apiDoc browser title",
+  "url" : "http://nodeSeed.tdktech.com/api",
+  "template": {
+    "withCompare": false,
+    "withGenerator": false
+  }
+}
