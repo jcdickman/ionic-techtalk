@@ -3,11 +3,18 @@
         <div class="list card">
             <div class="item item-divider">TDK News</div>
             <div ng-repeat="newsItem in news.newsItems" class="item item-body">
-                <div>
-                    {{newsItem.title}} - {{newsItem.summary}}
-                </div>
-                <div>
-                    <a class="button icon icon-right ion-chevron-right" ui-sref="news({newsItemId : newsItem.id})">Read More</a>
+                <div class="row">
+                    <div class="col col-90">
+                        <div>
+                            <strong>{{newsItem.title}}</strong>
+                        </div>
+                        <div>
+                            {{newsItem.summary}}
+                        </div>
+                    </div>
+                    <div class="col col-10">
+                        <a class="button button-small button-positive icon icon-right ion-chevron-right" ui-sref="news({newsItemId : newsItem.id})">Read More</a>
+                    </div>
                 </div>
             </div>
         </div>
