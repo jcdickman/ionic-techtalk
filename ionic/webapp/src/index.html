@@ -19,6 +19,11 @@
     <script type="text/javascript" src="<%= file %>"></script>
     <% }); %>
 
+    <script>
+        document.addEventListener('deviceready', function() {
+            ionic.Platform.detect();
+        });
+    </script>
 </head>
 <body>
     <!--
