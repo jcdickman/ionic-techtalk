@@ -82,7 +82,7 @@ The node jsdocs should now be accessible via {path to project root}/jsdocs/index
 First, install ionic and cordova
 
 ```sh
-$ npm install -g cordova ion
+$ npm install -g cordova ionic
 ```
 
 Next, from project root cd in to /ionic folder, then use the ionic CLI to create a blank ionic project called "ionicTechTalk"
