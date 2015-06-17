@@ -41,7 +41,7 @@ router.get('/', function (req, res) {
         {
             title: 'TDK Company Picnic - 2015!',
             summary: 'Thanks to all who came!',
-            body: 'A great time was had by all at The 2015 TDK Company Picnic! Especially by the reining Hillbilly Golf Champaions, Batman & James!'
+            body: 'A great time was had by all at The 2015 TDK Company Picnic! Especially by the reining Hillbilly Golf Champions, Batman & James!'
         }
     ];
 
