@@ -1,22 +1,18 @@
 <ion-view view-title="Dashboard">
     <ion-content class="padding">
-        <div class="list card">
+        <ion-list type="card">
             <div class="item item-divider">TDK News</div>
-            <div ng-repeat="newsItem in news.newsItems" class="item item-body">
-                <div class="row">
-                    <div class="col col-90">
-                        <div>
-                            <strong>{{newsItem.title}}</strong>
-                        </div>
-                        <div>
-                            {{newsItem.summary}}
-                        </div>
-                    </div>
-                    <div class="col col-10">
-                        <a class="button button-small button-positive icon icon-right ion-chevron-right" ui-sref="news({newsItemId : newsItem.id})">Read More</a>
-                    </div>
+            <ion-item class="item item-icon-right  item-text-wrap" ng-repeat="newsItem in news.newsItems" ui-sref="news({newsItemId : newsItem.id})">
+                <div>
+                    <strong>{{newsItem.title}}</strong>
                 </div>
-            </div>
-        </div>
+                <div>
+                    {{newsItem.summary}}
+                </div>
+                <i class="icon ion-chevron-right"></i>
+                <ion-option-button><i class="icon ion-ios-bookmarks"></i></ion-option-button>
+                <ion-option-button><i class="icon ion-share"></i></ion-option-button>
+            </ion-item>
+        </ion-list>
     </ion-content>
 </ion-view>
