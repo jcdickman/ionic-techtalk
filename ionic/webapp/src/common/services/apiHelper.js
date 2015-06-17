@@ -22,7 +22,8 @@ angular.module('techTalk.services')
                 logoutRes,
                 checkSessionRes,
                 userRes,
-                newsRes;
+                newsRes,
+                weatherUrl;
 
             console.log(window.location.host);
             setEnvironment(window.location.host);
@@ -136,6 +137,18 @@ angular.module('techTalk.services')
              */
             this.getNewsRes = function() {
                 return newsRes;
+            };
+
+            /**
+             * @ngdoc method
+             * @name getWeatherUrl
+             * @methodOf techTalk.services.ApiHelper
+             * @description
+             * Get the name of the weather url for the active environment
+             * @returns {string} service name
+             */
+            this.getWeatherUrl = function() {
+                return weatherUrl;
             };
 
             /************************
@@ -256,6 +269,7 @@ angular.module('techTalk.services')
                 checkSessionRes = "checkSession";
                 userRes = "users";
                 newsRes = "news";
+                weatherUrl = "http://api.openweathermap.org/data/2.5/weather";
                 switch(host) {
                     case 'local' :
                         serviceName = 'http://127.0.0.1:3000/';
