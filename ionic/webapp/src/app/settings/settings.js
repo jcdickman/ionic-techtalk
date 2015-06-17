@@ -27,27 +27,7 @@ angular.module( 'techTalk.tab.settings', [
                     controller: 'SettingsCtrl',
                     templateUrl: 'settings/settings.tpl.html',
                     resolve: {
-                        user: ['$q', '$state', 'AuthService', 'UserService', function($q, $state, AuthService, users) {
-                            var deferred = $q.defer();
-                            AuthService.checkSession()
-                                .success(function(data) {
-                                    if(data.user.loggedIn) {
-                                        users.initUser(data.token,data.user.id)
-                                            .success(function(breezeUser) {
-                                                deferred.resolve(breezeUser);
-                                            })
-                                            .error(function(error) {
-                                                console.log(error);
-                                            });
-                                    } else {
-                                        $state.go('login');
-                                    }
-                                })
-                                .error(function(error) {
-                                    console.log(error);
-                                });
-                            return deferred.promise;
-                        }]
+
                     }
                 }
             },
