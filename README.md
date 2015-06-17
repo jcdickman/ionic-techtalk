@@ -79,4 +79,64 @@ The node jsdocs should now be accessible via {path to project root}/jsdocs/index
 
 ## Quick Start Ionic App
 
-Coming soon...
+First, install ionic and cordova
+
+```sh
+$ npm install -g cordova ion
+```
+
+Next, from project root cd in to /ionic folder, then use the ionic CLI to create a blank ionic project called "ionicTechTalk"
+
+```sh
+$ cd ionic
+$ ionic start ionicTechTalk blank
+```
+
+The Angular/Ionic source code resides in the webapp folder.
+From there, you should be able to install all dependencies, then build the web application into the ionicTechTalk/www folder.
+The build.config.js & Gruntfile.js are setup to do this already based on the the app name being 'ionicTechTalk'.
+
+```sh
+$ cd ..
+$ cd webapp
+$ npm install
+$ bower install
+$ grunt build
+```
+
+These commands install all development dependencies, all application dependencies, then builds and deploys the app into the ionic/cordova www folder.
+To setup the app to run on android and ios, do the following:
+
+```sh
+$ cd ..
+$ cd ionic/ionicTechTalk
+$ ionic add platform ios
+$ ionic add platform android
+```
+
+To build the ionic app for a certain platform, run the following command for that platform
+
+```sh
+$ ionic build ios
+```
+
+To test the app in a web browser for debugging purposes
+
+```sh
+$ ionic serve
+```
+
+To emulate the app for a certain platform
+
+```sh
+$ ionic emulate ios
+````
+
+To test from natively from a mobile device:
+
+For iOS, run the Xcode project in ionicTechtalk/plaforms/ios/ionicTechTalk.xcode
+
+For android, simply type:
+```sh
+ionic run android
+```

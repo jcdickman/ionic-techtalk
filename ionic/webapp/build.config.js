@@ -7,7 +7,7 @@ module.exports = {
      * development and the `compile_dir` folder is where our app resides once it's
      * completely built.
      */
-    build_dir: '../www',
+    build_dir: '../ionicTechTalk/www',
     compile_dir: 'bin',
     docs_dir: 'docs',
 
