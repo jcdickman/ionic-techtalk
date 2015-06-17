@@ -77,6 +77,7 @@ angular.module( 'techTalk.tab.dashboard', [
              * Scope Variables
              */
             $scope.news = {};
+            $scope.weather = {};
             /**
              * Local Variables
              */
@@ -110,16 +111,23 @@ angular.module( 'techTalk.tab.dashboard', [
                 console.log('init');
                 $scope.news.newsItems = news.get();
                 console.log($scope.news);
-                //var url = apiHelper.getServiceName() + apiHelper.getNewsRes();
-                //var method = "GET";
-                //var params = null;
-                //var data = null;
-                //var headers = apiHelper.getTokenHeader();
-                //var resource = false;
-                //apiHelper.apiCall(url,method,params,data,headers,resource)
-                //    .success(function(results) {
-                //        console.log(results);
-                //    });
+                getWeatherCall()
+                    .success(function(data, status, headers, config) {
+                        $scope.weather.weatherDetails = data;
+                        console.log(data);
+                    });
+            }
+
+            function getWeatherCall() {
+                var url = 'http://api.openweathermap.org/data/2.5/weather';
+                var method = 'GET';
+                var params = {
+                    zip: '63017,us',
+                    units: 'imperial'
+                };
+                var data = null;
+                var headers = null;
+                return apiHelper.apiCall(url,method,params,data,headers);
             }
 
         }

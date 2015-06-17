@@ -18,5 +18,53 @@
                 </div>
             </div>
         </div>
+        <div class="list card">
+            <div class="item item-divider">
+                <div class="row">
+                    <div class="col">
+                        Current Weather
+                    </div>
+                </div>
+            </div>
+            <div class="item item-body">
+                <div class="row">
+                    <div class="col">
+                        {{weather.weatherDetails.weather.main}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        Temperature:
+                    </div>
+                    <div class="col">
+                        {{weather.weatherDetails.main.temp}} &deg;F
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        Min/Max Temp:
+                    </div>
+                    <div class="col">
+                        {{weather.weatherDetails.main.temp_min}} / {{weather.weatherDetails.main.temp_max}} &deg;F
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        Wind:
+                    </div>
+                    <div class="col">
+                        {{weather.weatherDetails.wind.speed}} MPH / {{weather.weatherDetails.wind.deg}}&deg;
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        Clouds:
+                    </div>
+                    <div class="col">
+                        {{weather.weatherDetails.clouds.all}}%
+                    </div>
+                </div>
+            </div>
+        </div>
     </ion-content>
 </ion-view>
