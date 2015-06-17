@@ -5,7 +5,7 @@
  * Login module
  */
 angular.module( 'techTalk.login', [
-    'ui.router'
+    'ionic'
 ])
 
 /**
@@ -51,8 +51,6 @@ angular.module( 'techTalk.login', [
             /**
              * Scope Variables
              */
-            $scope.username = null;
-            $scope.password = null;
 
             /**
              * Local Variables
@@ -71,8 +69,8 @@ angular.module( 'techTalk.login', [
             /**
              * Scope Functions
              */
-            $scope.login = function(username,password) {
-                loginCall(username,password);
+            $scope.login = function() {
+                loginCall(this.username,this.password);
             };
 
             /**
