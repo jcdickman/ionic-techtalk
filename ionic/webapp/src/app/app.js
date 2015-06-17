@@ -11,6 +11,7 @@ angular.module('techTalk', [
     'breeze.angular',
     'techTalk.services',
     //'techTalk.models',
+    'techTalk.login',
     'techTalk.tab.dashboard'
 ])
 
@@ -40,10 +41,14 @@ angular.module('techTalk', [
             .state('tab', {
                 url: "/tab",
                 abstract: true,
-                templateUrl: "tabs.tpl.html"
+                views: {
+                    component: {
+                        templateUrl: 'tabs.tpl.html'
+                    }
+                }
             });
 
-        $urlRouterProvider.otherwise('/tab/dashboard');
+        $urlRouterProvider.otherwise('/login');
     })
 /**
  * @ngdoc method
