@@ -11,6 +11,7 @@ angular.module('techTalk', [
     'breeze.angular',
     'techTalk.services',
     //'techTalk.models',
+    'base64',
     'techTalk.login',
     'techTalk.tab.dashboard'
 ])

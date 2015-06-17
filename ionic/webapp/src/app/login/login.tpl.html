@@ -2,13 +2,13 @@
     <ion-content>
         <div class="list">
             <label class="item item-input">
-                <input type="text" placeholder="Username">
+                <input type="text" placeholder="Username" ng-model="username">
             </label>
             <label class="item item-input">
-                <input type="password" placeholder="Password">
+                <input type="password" placeholder="Password" ng-model="password">
             </label>
         </div>
-        <button class="button button-full button-balanced" ui-sref="dashboard">
+        <button class="button button-full button-balanced" ng-click="login(username,password)">
             Login
         </button>
     </ion-content>

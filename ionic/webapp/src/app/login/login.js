@@ -45,11 +45,14 @@ angular.module( 'techTalk.login', [
     .controller( 'LoginCtrl', [
         '$scope',
         '$state',
-        function LoginController( $scope, $state ) {
+        'AuthService',
+        function LoginController( $scope, $state, AuthService ) {
 
             /**
              * Scope Variables
              */
+            $scope.username = null;
+            $scope.password = null;
 
             /**
              * Local Variables
@@ -68,6 +71,9 @@ angular.module( 'techTalk.login', [
             /**
              * Scope Functions
              */
+            $scope.login = function(username,password) {
+                loginCall(username,password);
+            };
 
             /**
              * Helper Functions
@@ -82,6 +88,40 @@ angular.module( 'techTalk.login', [
              */
             function initialize() {
                 console.log('init');
+            }
+
+            /**
+             * @ngdoc method
+             * @name loginCall
+             * @methodOf techTalk.login.controller:LoginCtrl
+             * @description
+             * Login the user
+             * @param {string} userName
+             * The username
+             * @param {string} password
+             * The password
+             */
+            function loginCall(userName,password) {
+                AuthService.login(userName,password)
+                    .success(function(data, status, headers, config) {
+                        var token = data.access_token.token;
+                        var userId = data.access_token.userId;
+                        if(token) {
+                            //userService.initUser(token,userId)
+                            //    .success(function(data) {
+                                    $state.go('dashboard');
+                                //})
+                                //.error(function(error) {
+                                //    console.log(error);
+                                //});
+                        }
+                    })
+                    .error(function(data, status, headers, config) {
+                        console.log(data);
+                        console.log(status);
+                        console.log(headers);
+                        console.log(config);
+                    });
             }
 
         }

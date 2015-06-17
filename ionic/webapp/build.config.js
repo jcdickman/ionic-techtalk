@@ -74,7 +74,8 @@ module.exports = {
             'vendor/moment/min/moment.min.js',
             'vendor/moment-timezone/builds/moment-timezone-with-data.min.js',
             'vendor/breeze-client/build/breeze.debug.js',
-            'vendor/breeze-client/build/adapters/breeze.bridge.angular.js'
+            'vendor/breeze-client/build/adapters/breeze.bridge.angular.js',
+            'vendor/angular-base64/angular-base64.js'
         ],
         css: [
             'vendor/ionic/css/ionic.css',
