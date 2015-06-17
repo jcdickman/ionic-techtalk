@@ -9,7 +9,8 @@ angular.module('techTalk.services')
     .service('DataModel', [
         'breeze',
         'userModel',
-        function(breeze,userModel) {
+        'newsItemModel',
+        function(breeze,userModel,newsItemModel) {
 
             /**
              * @ngdoc method
@@ -22,6 +23,7 @@ angular.module('techTalk.services')
                  * Add model definitions from model factories
                  */
                 metadataStore.addEntityType(userModel);
+                metadataStore.addEntityType(newsItemModel);
 
             };
 

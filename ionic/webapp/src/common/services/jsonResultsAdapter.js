@@ -47,6 +47,10 @@ angular.module('techTalk.services')
                     return { entityType: "User" };
                 }
 
+                if (node.entityType == "NewsItem") {
+                    return { entityType: "NewsItem" };
+                }
+
             }
         }
 

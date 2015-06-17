@@ -17,18 +17,36 @@ router.get('/', function (req, res) {
         'role:delete',
         'role:index',
         'permission:read',
-        'permission:index'
+        'permission:index',
+        'news:create',
+        'news:read',
+        'news:update',
+        'news:delete'
     ];
 
     var userPermissions = [
         'user:read',
         'user:update',
         'role:read',
-        'permission:read'
+        'permission:read',
+        'news:read'
+    ];
+
+    var news = [
+        {
+            title: 'Congratulations!!',
+            summary: 'Consultant Kenny Rosenkoetter and his wife Megan welcomed daughter Alivia Jade on Friday, June 12th.',
+            body: 'Consultant Kenny Rosenkoetter and his wife Megan welcomed daughter Alivia Jade on Friday, June 12th.  Mom, dad, big brother Jackson, and little Alivia are doing great!'
+        },
+        {
+            title: 'TDK Company Picnic - 2015!',
+            summary: 'Thanks to all who came!',
+            body: 'A great time was had by all at The 2015 TDK Company Picnic! Especially by the reining Hillbilly Golf Champaions, Batman & James!'
+        }
     ];
 
     /**
-     * Forced update to the Schema
+     * Forced update to the Schema, then seed database
      */
 
     models.sequelize.query('SET FOREIGN_KEY_CHECKS = 0')
@@ -67,7 +85,6 @@ router.get('/', function (req, res) {
         /**
          * Setup Permissions
          */
-
         var adminPerm = setupAdmin.then(function(role) {
             return addPermissions(permissions,role);
         });
@@ -85,6 +102,10 @@ router.get('/', function (req, res) {
             return createUserWithRole(role,'user','user123');
         });
 
+        /**
+         * Setup news
+         */
+        var addNews = createNews(news);
 
         $q.all([
             setupAdmin,
@@ -92,7 +113,8 @@ router.get('/', function (req, res) {
             adminPerm,
             userPerm,
             adminUser,
-            userUser
+            userUser,
+            addNews
         ]).spread(function(results) {
             console.log('results');
             console.log(results);
@@ -158,6 +180,34 @@ router.get('/', function (req, res) {
             user.addRole(role);
             deferred.resolve(user);
         });
+
+        return deferred.promise;
+    }
+
+    function createNews(news) {
+
+        var deferred = $q.defer();
+
+        var promises = [];
+
+        news.forEach(function(item) {
+            var deferred = $q.defer();
+            promises.push(deferred.promise);
+            models.NewsItem.findOrCreate({
+                where : {
+                    title: item.title,
+                    summary: item.summary,
+                    body : item.body
+                }
+            }).spread(function (item, created) {
+                deferred.resolve(item);
+            });
+        });
+
+        $q.all(promises)
+            .then(function(results) {
+                deferred.resolve(results);
+            });
 
         return deferred.promise;
     }

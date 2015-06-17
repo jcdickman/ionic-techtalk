@@ -43,6 +43,7 @@ var public = require('./routes/public');
 var logout = require('./routes/logout')(app);
 var checkSession = require('./routes/checkSession')(app);
 var dbSeed = require('./routes/dbSeed');
+var news = require('./routes/news')(app);
 
 app.use('/', index);
 app.use('/users', users);
@@ -52,6 +53,7 @@ app.post('/oauth/token', oauth2.token);
 app.use('/logout', logout);
 app.use('/checkSession', checkSession);
 app.use('/dbSeed', dbSeed);
+app.use('/news', news);
 
 /**
  * Catch and Handle route errors below

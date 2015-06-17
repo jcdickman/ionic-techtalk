@@ -21,7 +21,8 @@ angular.module('techTalk.services')
                 oauthTokenRes,
                 logoutRes,
                 checkSessionRes,
-                userRes;
+                userRes,
+                newsRes;
 
             console.log(window.location.host);
             setEnvironment(window.location.host);
@@ -124,6 +125,22 @@ angular.module('techTalk.services')
             this.getUserRes = function() {
                 return userRes;
             };
+
+            /**
+             * @ngdoc method
+             * @name getNewsRes
+             * @methodOf techTalk.services.ApiHelper
+             * @description
+             * Get the name of the news resource for the active environment
+             * @returns {string} service name
+             */
+            this.getNewsRes = function() {
+                return newsRes;
+            };
+
+            /************************
+             * End Resource Getters *
+             ***********************/
 
             /**
              * @ngdoc method
@@ -234,28 +251,20 @@ angular.module('techTalk.services')
             }
 
             function setEnvironment(host) {
+                oauthTokenRes = "oauth/token";
+                logoutRes = "logout";
+                checkSessionRes = "checkSession";
+                userRes = "users";
+                newsRes = "news";
                 switch(host) {
-                    case 'icsportal.local' :
                     case 'local' :
                         serviceName = 'http://127.0.0.1:3000/';
                         env = "local";
-                        oauthTokenRes = "oauth/token";
-                        logoutRes = "logout";
-                        checkSessionRes = "checkSession";
-                        userRes = "users";
                         break;
-                    //case 'icsportal.dev' :
-                    //case 'dev' :
-                    //    break;
                     default:
-                        //Insert project name for case where
-                        //you haven't set up a vhost entry
                         serviceName = 'http://127.0.0.1:3000/';
                         env = "local";
-                        oauthTokenRes = "oauth/token";
-                        logoutRes = "logout";
-                        checkSessionRes = "checkSession";
-                        userRes = "users";
+
                         break;
                 }
             }
