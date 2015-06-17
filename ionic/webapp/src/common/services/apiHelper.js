@@ -271,14 +271,14 @@ angular.module('techTalk.services')
                 newsRes = "news";
                 weatherUrl = "http://api.openweathermap.org/data/2.5/weather";
                 switch(host) {
+                    case 'localhost:8100':
                     case 'local' :
                         serviceName = 'http://127.0.0.1:3000/';
                         env = "local";
                         break;
                     default:
-                        serviceName = 'http://127.0.0.1:3000/';
-                        env = "local";
-
+                        serviceName = 'http://ec2-54-213-237-196.us-west-2.compute.amazonaws.com:3000/';
+                        env = "dev";
                         break;
                 }
             }
