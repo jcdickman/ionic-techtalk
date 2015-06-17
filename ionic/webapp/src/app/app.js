@@ -13,7 +13,8 @@ angular.module('techTalk', [
     'techTalk.models',
     'base64',
     'techTalk.login',
-    'techTalk.tab.dashboard'
+    'techTalk.tab.dashboard',
+    'techTalk.tab.settings'
 ])
 
 /**

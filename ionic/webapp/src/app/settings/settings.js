@@ -1,17 +1,17 @@
 /**
  * @ngdoc object
- * @name techTalk.tab.dashboard
+ * @name techTalk.tab.settings
  * @description
- * Dashboard module
+ * Settings module
  */
-angular.module( 'techTalk.tab.dashboard', [
+angular.module( 'techTalk.tab.settings', [
     'ionic'
 ])
 
 /**
  * @ngdoc method
  * @name config
- * @methodOf techTalk.tab.dashboard
+ * @methodOf techTalk.tab.settings
  * @description
  * Registers work which needs to be performed on module loading:
  * configure the state associated with this controller,
@@ -19,13 +19,13 @@ angular.module( 'techTalk.tab.dashboard', [
  * prior to loading controller instance.
  */
     .config(function config( $stateProvider ) {
-        $stateProvider.state( 'dashboard', {
-            url: '/dashboard',
+        $stateProvider.state( 'settings', {
+            url: '/settings',
             parent: 'tab',
             views: {
-                "tab-dashboard": {
-                    controller: 'DashboardCtrl',
-                    templateUrl: 'dashboard/dashboard.tpl.html',
+                "tab-settings": {
+                    controller: 'SettingsCtrl',
+                    templateUrl: 'settings/settings.tpl.html',
                     resolve: {
                         user: ['$q', '$state', 'AuthService', 'UserService', function($q, $state, AuthService, users) {
                             var deferred = $q.defer();
@@ -47,36 +47,33 @@ angular.module( 'techTalk.tab.dashboard', [
                                     console.log(error);
                                 });
                             return deferred.promise;
-                        }],
-                        news: ['NewsService', function(news) {
-                            return news.load();
                         }]
                     }
                 }
             },
-            data: { pageTitle: 'Dashboard' }
+            data: { pageTitle: 'Settings' }
         });
     })
 
 /**
  * @ngdoc controller
- * @name techTalk.tab.dashboard.controller:DashboardCtrl
+ * @name techTalk.tab.settings.controller:SettingsCtrl
  * @description
  * Main application controller
  * @requires $scope
  * @requires $state
  */
-    .controller( 'DashboardCtrl', [
+    .controller( 'SettingsCtrl', [
         '$scope',
         '$state',
-        'ApiHelper',
-        'NewsService',
-        function DashboardController( $scope, $state, apiHelper, news ) {
+        'AuthService',
+        'EntityManager',
+        function SettingsController( $scope, $state, AuthService, manager ) {
 
             /**
              * Scope Variables
              */
-            $scope.news = {};
+
             /**
              * Local Variables
              */
@@ -94,6 +91,9 @@ angular.module( 'techTalk.tab.dashboard', [
             /**
              * Scope Functions
              */
+            $scope.logout = function() {
+                logout();
+            };
 
             /**
              * Helper Functions
@@ -102,24 +102,34 @@ angular.module( 'techTalk.tab.dashboard', [
             /**
              * @ngdoc method
              * @name initialize
-             * @methodOf techTalk.tab.dashboard.controller:DashboardCtrl
+             * @methodOf techTalk.tab.settings.controller:SettingsCtrl
              * @description
              * Here simply to organize the code that runs on controller init
              */
             function initialize() {
                 console.log('init');
-                $scope.news.newsItems = news.get();
-                console.log($scope.news);
-                //var url = apiHelper.getServiceName() + apiHelper.getNewsRes();
-                //var method = "GET";
-                //var params = null;
-                //var data = null;
-                //var headers = apiHelper.getTokenHeader();
-                //var resource = false;
-                //apiHelper.apiCall(url,method,params,data,headers,resource)
-                //    .success(function(results) {
-                //        console.log(results);
-                //    });
+            }
+
+            /**
+             * @ngdoc method
+             * @name logout
+             * @methodOf techTalk.tab.settings.controller:SettingsCtrl
+             * @description
+             * Logs the user out of the app
+             */
+            function logout() {
+                AuthService.logout()
+                    .success(function() {
+                        manager.clear();
+                        AuthService.setUser({ loggedIn: false });
+                        $state.go('login');
+                    })
+                    .error(function(data) {
+                        console.log(data);
+                        manager.clear();
+                        AuthService.setUser({ loggedIn: false });
+                        $state.go('login');
+                    });
             }
 
         }
