@@ -85,16 +85,16 @@ First, install ionic and cordova
 $ npm install -g cordova ionic
 ```
 
-Next, from project root cd in to /ionic folder, then use the ionic CLI to create a blank ionic project called "ionicTechTalk"
+Next, from project root cd in to /ionic folder, then use the ionic CLI to create a blank ionic project called "techTalk"
 
 ```sh
 $ cd ionic
-$ ionic start ionicTechTalk blank
+$ ionic start techTalk blank
 ```
 
 The Angular/Ionic source code resides in the webapp folder.
-From there, you should be able to install all dependencies, then build the web application into the ionicTechTalk/www folder.
-The build.config.js & Gruntfile.js are setup to do this already based on the the app name being 'ionicTechTalk'.
+From there, you should be able to install all dependencies, then build the web application into the techTalk/www folder.
+The build.config.js & Gruntfile.js are setup to do this already based on the the app name being 'techTalk'.
 
 ```sh
 $ cd ..
@@ -109,9 +109,9 @@ To setup the app to run on android and ios, do the following:
 
 ```sh
 $ cd ..
-$ cd ionic/ionicTechTalk
-$ ionic add platform ios
-$ ionic add platform android
+$ cd ionic/techTalk
+$ ionic platform add ios
+$ ionic platform add android
 ```
 
 To build the ionic app for a certain platform, run the following command for that platform
@@ -134,7 +134,7 @@ $ ionic emulate ios
 
 To test from natively from a mobile device:
 
-For iOS, run the Xcode project in ionicTechtalk/plaforms/ios/ionicTechTalk.xcode
+For iOS, run the Xcode project in ionicTechtalk/plaforms/ios/techTalk.xcode
 
 For android, simply type:
 ```sh
