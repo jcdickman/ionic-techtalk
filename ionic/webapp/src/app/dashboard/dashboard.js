@@ -71,7 +71,8 @@ angular.module( 'techTalk.tab.dashboard', [
         '$state',
         'ApiHelper',
         'NewsService',
-        function DashboardController( $scope, $state, apiHelper, news ) {
+        'WeatherService',
+        function DashboardController( $scope, $state, apiHelper, news, weather ) {
 
             /**
              * Scope Variables
@@ -111,24 +112,14 @@ angular.module( 'techTalk.tab.dashboard', [
                 console.log('init');
                 $scope.news.newsItems = news.get();
                 console.log($scope.news);
-                getWeatherCall()
+                weather.get()
                     .success(function(data, status, headers, config) {
                         $scope.weather.weatherDetails = data;
                         console.log(data);
                     });
             }
 
-            function getWeatherCall() {
-                var url = 'http://api.openweathermap.org/data/2.5/weather';
-                var method = 'GET';
-                var params = {
-                    zip: '63017,us',
-                    units: 'imperial'
-                };
-                var data = null;
-                var headers = null;
-                return apiHelper.apiCall(url,method,params,data,headers);
-            }
+
 
         }
     ])
