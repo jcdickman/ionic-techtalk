@@ -51,6 +51,9 @@ angular.module( 'techTalk.login', [
             /**
              * Scope Variables
              */
+            $scope.user = {};
+            $scope.user.username = null;
+            $scope.user.password = null;
 
             /**
              * Local Variables
@@ -70,7 +73,7 @@ angular.module( 'techTalk.login', [
              * Scope Functions
              */
             $scope.login = function() {
-                loginCall(this.username,this.password);
+                loginCall($scope.user.username,$scope.user.password);
             };
 
             /**
