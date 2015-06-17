@@ -10,7 +10,7 @@ angular.module('techTalk', [
     'ionic',
     'breeze.angular',
     'techTalk.services',
-    //'techTalk.models',
+    'techTalk.models',
     'base64',
     'techTalk.login',
     'techTalk.tab.dashboard'
@@ -114,7 +114,7 @@ angular.module("techTalk.services", []);
  * @description
  * Main module to hold all model object factories
  */
-//angular.module("techTalk.models", []);
+angular.module("techTalk.models", []);
 
 /**
  * @ngdoc overview

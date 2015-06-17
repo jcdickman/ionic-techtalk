@@ -23,7 +23,7 @@ module.exports = function (app) {
      */
 
     function editContentCheck(req,res,next) {
-        if(req.authInfo.scope.indexOf('readOwnUser') == -1) {
+        if(req.authInfo.scope.indexOf('user:read') == -1) {
             res.statusCode = 403;
             return res.end('Forbidden');
         }

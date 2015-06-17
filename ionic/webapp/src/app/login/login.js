@@ -26,7 +26,27 @@ angular.module( 'techTalk.login', [
                     controller: 'LoginCtrl',
                     templateUrl: 'login/login.tpl.html',
                     resolve: {
-
+                        user: ['$q', '$state', 'AuthService', 'UserService', function($q, $state, AuthService, users) {
+                            var deferred = $q.defer();
+                            AuthService.checkSession()
+                                .success(function(data) {
+                                    if(data.user.loggedIn) {
+                                        users.initUser(data.token,data.user.id)
+                                            .success(function(breezeUser) {
+                                                $state.go('dashboard');
+                                            })
+                                            .error(function(error) {
+                                                console.log(error);
+                                            });
+                                    } else {
+                                        deferred.resolve(data.user);
+                                    }
+                                })
+                                .error(function(error) {
+                                    console.log(error);
+                                });
+                            return deferred.promise;
+                        }]
                     }
                 }
             },
@@ -46,7 +66,8 @@ angular.module( 'techTalk.login', [
         '$scope',
         '$state',
         'AuthService',
-        function LoginController( $scope, $state, AuthService ) {
+        'UserService',
+        function LoginController( $scope, $state, AuthService, users ) {
 
             /**
              * Scope Variables
@@ -108,13 +129,13 @@ angular.module( 'techTalk.login', [
                         var token = data.access_token.token;
                         var userId = data.access_token.userId;
                         if(token) {
-                            //userService.initUser(token,userId)
-                            //    .success(function(data) {
+                            users.initUser(token,userId)
+                                .success(function(data) {
                                     $state.go('dashboard');
-                                //})
-                                //.error(function(error) {
-                                //    console.log(error);
-                                //});
+                                })
+                                .error(function(error) {
+                                    console.log(error);
+                                });
                         }
                     })
                     .error(function(data, status, headers, config) {

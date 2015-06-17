@@ -20,7 +20,8 @@ angular.module('techTalk.services')
                 serviceName,
                 oauthTokenRes,
                 logoutRes,
-                checkSessionRes;
+                checkSessionRes,
+                userRes;
 
             console.log(window.location.host);
             setEnvironment(window.location.host);
@@ -110,6 +111,18 @@ angular.module('techTalk.services')
              */
             this.getCheckSessionRes = function() {
                 return checkSessionRes;
+            };
+
+            /**
+             * @ngdoc method
+             * @name getUserRes
+             * @methodOf techTalk.services.ApiHelper
+             * @description
+             * Get the name of the user resource for the active environment
+             * @returns {string} service name
+             */
+            this.getUserRes = function() {
+                return userRes;
             };
 
             /**
@@ -229,6 +242,7 @@ angular.module('techTalk.services')
                         oauthTokenRes = "oauth/token";
                         logoutRes = "logout";
                         checkSessionRes = "checkSession";
+                        userRes = "users";
                         break;
                     //case 'icsportal.dev' :
                     //case 'dev' :
@@ -241,6 +255,7 @@ angular.module('techTalk.services')
                         oauthTokenRes = "oauth/token";
                         logoutRes = "logout";
                         checkSessionRes = "checkSession";
+                        userRes = "users";
                         break;
                 }
             }
