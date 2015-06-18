@@ -18,7 +18,7 @@ The API lives in the aptly named "api" folder. Cd into the api folder
 $ cd api
 ```
 
-Within /api folder, run npm install (may need sudo depending on the permissions of the htdocs)
+Within /api folder, run npm install (may need sudo depending on the permissions of the folder)
 ```sh
 $ npm install
 ```
@@ -28,7 +28,7 @@ If you plan on using the ngdocs to generate app documentation, within /api folde
 $ grunt build
 ```
 
-To start the API servcer, within /api folder run npm start
+To start the API servces, within /api folder run npm start
 
 ```sh
 $ npm start
